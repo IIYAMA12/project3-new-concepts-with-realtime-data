@@ -18,9 +18,9 @@
         document.getElementById("main-background").style.transform = "rotate(" + -gamma + "deg)";
 
         if (gamma > 0) {
-            document.getElementById("main-vis").style.transform = "rotate(" + -gamma + "deg) translateY(50vh)";
+            document.getElementById("main-vis").style.transform = "rotate(" + -gamma + "deg) translateY(40vh)";
         } else {
-            document.getElementById("main-vis").style.transform = "rotate(" + -gamma + "deg) translateY(50vh) scaleX(-1)";
+            document.getElementById("main-vis").style.transform = "rotate(" + -gamma + "deg) translateY(40vh) scaleX(-1)";
         }
         document.getElementById("main-vis").classList.toggle("flip-h", gamma < 0);
 

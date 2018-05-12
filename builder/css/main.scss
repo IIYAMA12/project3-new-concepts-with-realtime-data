@@ -1,7 +1,68 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+:root {
+    --main-color: #2EACFF;
+}
+
+
+
+
 body {
     color: white;
     margin: 0;
-    background-color: #2EACFF;
+    background-color: var(--main-color);
     height: 100vh;
     width: 100vw;
 }
@@ -42,9 +103,45 @@ textarea {
 
 #main-vis {
     position: fixed;
-    transform-origin: 50% 50vh;
+    transform-origin: 50% calc(40vh + 10vmin);
     left: 13.6vmin;
     height: 20vmin;
+    z-index: 500;
+    
+    // transition: none;
+
+    transition: top 0.5s;
+}
+
+#crop {
+    position: fixed;
+    z-index: 499;
+    left: 50vw;
+    top: 25vmin;
+    transform-origin: 0px 25vmin;
+    transform: rotate(10deg) translateX(5vmin);
+    img {
+        position: absolute;
+        width: 22vmin;
+        transform-origin: 30% 30%;
+        &:nth-of-type(1) {
+            transform: rotate(-45deg) translate(-24.5vmin,-20vmin);
+        }
+        &:nth-of-type(2) {
+            transform: rotate(45deg) translate(10.5vmin,0);
+        }
+        &:nth-of-type(3) {
+            transform: translateX(-11vmin);
+        }
+    }
+
+}
+
+#main-vis.on-plate {
+    top: 45vmin!important;
+    transform-origin: 50% 40vh;
+    transform: rotate(30deg) !important;
+    left: -20vmin;
 }
 
 #debug {
@@ -58,4 +155,44 @@ textarea {
 .flip-h {
     filter: FlipH;
     -ms-filter: "FlipH";
+}
+
+.plate-container {
+    display: flex;
+    margin: auto;
+    width: fit-content;
+    align-content: center;
+    margin-top: 30vmin;
+    > :nth-child(2) {
+        height: 55vmin;
+    }
+    > :nth-child(-n+2) {
+        margin-right: 5vmin;
+    }
+    > :first-child, > :last-child {
+        width: 6vmin;
+    }
+}
+
+.thinking {
+    position: relative;
+    padding-top: 40vmin;
+    width: calc(100% - 10vmin);
+    margin: auto;
+    display: block;
+    img {
+        height: 40vmin;
+        position: absolute;
+        right: 10vmin;
+        top: 0;
+    }
+
+    p {
+        border-radius: 50%;
+        background-color: white;
+        padding: 2rem;
+        text-align: center;
+        color: var(--main-color);
+        font-weight: 700;
+    }
 }

@@ -23,7 +23,7 @@ const frameRender = {
             timeSlice = (timeStamp - frameRender.lastTimeStamp);
             
         }
-        // debug(timeSlice);
+
 
         frameRender.lastTimeStamp = timeStamp;
         
@@ -71,7 +71,3 @@ const frameRender = {
 window.addEventListener("load", function () {
     frameRender.start();
 });
-
-function debug () {
-    document.getElementById("debug").textContent = JSON.stringify(arguments) + new Date().getTime(); 
-}

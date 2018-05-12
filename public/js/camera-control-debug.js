@@ -50,19 +50,17 @@ let cameraDirection = "stop";
                 }
 
                 const progress = slidePosition / totalSlideSize;
-                // debug(Math.abs(lastBackgroundProgress - progress));
-                // debug(cameraDirection);
+
                 // console.log(Math.abs(lastBackgroundProgress - progress), progress)
                 if (Math.abs(lastBackgroundProgress - progress) > 0.5) {
                     document.getElementById("main-background").classList.remove("background-transition");
                     
                     setTimeout(function () {
-                        // debug("yes", Math.abs(lastBackgroundProgress - progress));
+
                         document.getElementById("main-background").classList.add("background-transition");
                     }, 50);
                 }
                 lastBackgroundProgress = progress;
-                // debug(document.getElementsByTagName("main")[0].style.backgroundPosition);
                 console.log(document.getElementsByTagName("main")[0].style.backgroundPosition);
                 const backgroundProgress = slidePosition % 10 / 10;
                 const backgroundPositionX = (backgroundProgress * 200) - 50;
