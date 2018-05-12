@@ -1,0 +1,61 @@
+body {
+    color: white;
+    margin: 0;
+    background-color: #2EACFF;
+    height: 100vh;
+    width: 100vw;
+}
+
+#main-background {
+    position: fixed;
+    left: -150vmax;
+    top: -150vmax;
+    height: 300vmax;
+    width: 300vmax;
+    z-index: 1000;
+    background: rgba(0,0,0,0) URL("../img/background.svg");
+    // border: 1px solid red;
+    background-size: auto 200vh;
+    pointer-events: none;
+    // background-position: 0rem calc(150vmax - 50vh) !important; 
+    // background-repeat: repeat-x;
+    // transition: transform 0.3s;
+}
+
+.background-transition {
+    transition: background-position 1s; // , transform 0.3s
+}
+
+main > article {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    // background-color: red;
+}
+
+
+
+textarea {
+    display: none;
+}
+
+#main-vis {
+    position: fixed;
+    transform-origin: 50% 50vh;
+    left: 13.6vmin;
+    height: 20vmin;
+}
+
+#debug {
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    color: red;
+}
+
+.flip-h {
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
