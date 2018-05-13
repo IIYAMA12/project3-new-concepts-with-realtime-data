@@ -65,6 +65,7 @@ body {
     background-color: var(--main-color);
     height: 100vh;
     width: 100vw;
+    text-align: center;
 }
 
 #main-background {
@@ -101,25 +102,87 @@ textarea {
     display: none;
 }
 
-#main-vis {
+#fish-shit {
+    opacity: 0;
+    transform: scale(.5) rotate(-43deg) translate(-63vh, 60vh);
+
+}
+
+#main-fish {
     position: fixed;
-    transform-origin: 50% calc(40vh + 10vmin);
+    transform-origin: 50% calc(50vh - 10vmin);
     left: 13.6vmin;
-    height: 20vmin;
+    img {
+        height: 20vmin;
+    }
     z-index: 500;
+    transform: translateY(calc(50vh - 10vmin));
     
     // transition: none;
 
     transition: top 0.5s;
+    
+    &.on-plate {
+        top: 45vmin!important;
+        transform: none;
+        .rotate-container {
+            transform-origin: 50% 40vh;
+            transform: rotate(30deg) !important;
+        }
+        left: -20vmin;
+    }
+
+    &.on-bottom-section {
+        top: calc(75vh - 10vmin)!important;
+        transform: none;
+        transform-origin: 0px 20vmin;
+    }
+    &.shitting {
+
+        @keyframes swim-up-animation {
+            100% {
+                
+                transform: translate(calc(50vw + 20vmin), -100vh);
+            }
+            0% {
+                transform: translate(calc(50vw + 20vmin), 0px)
+            }
+        }
+        animation: swim-up-animation 2s;
+        animation-delay: 5s;
+        animation-fill-mode: forwards;
+
+        transform:  translate(calc(50vw + 20vmin), 0px);
+        .rotate-container {
+            transform-origin: 50% 40vh;
+            transform: rotate(-90deg) !important;
+        }
+    }
+
+    &:not(.on-screen) {
+        top: 120vh;
+    }
 }
 
-#crop {
+#main-crop {
     position: fixed;
     z-index: 499;
+    &.on-plate {
+        left: 50vw;
+        top: 25vmin;
+        
+        .rotate-container {
+            transform-origin: 0px 25vmin;
+            transform: rotate(10deg) translateX(5vmin) !important;
+        }
+    }
     left: 50vw;
-    top: 25vmin;
-    transform-origin: 0px 25vmin;
-    transform: rotate(10deg) translateX(5vmin);
+    &.on-bottom-section {
+        top: calc(25vh - 20vmin)!important;
+        // transform: none !important;
+        
+    }
+
     img {
         position: absolute;
         width: 22vmin;
@@ -135,22 +198,37 @@ textarea {
         }
     }
 
+    &.on-screen {
+        @keyframes crop-animation-show {
+            0% {
+                transform: translateY(-30vw);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        animation: crop-animation-show 1s;
+        animation-fill-mode: forwards;
+    }
+    &:not(.on-screen) {
+        @keyframes crop-animation-hide {
+            100% {
+                display: none;
+                visibility: hidden;
+            }
+            99% {
+                transform: translateY(-30vw);
+            }
+            0% {
+                transform: translateX(0px);
+            }
+        }
+        animation: crop-animation-hide 1s;
+        animation-fill-mode: forwards;
+    }
 }
 
-#main-vis.on-plate {
-    top: 45vmin!important;
-    transform-origin: 50% 40vh;
-    transform: rotate(30deg) !important;
-    left: -20vmin;
-}
 
-#debug {
-    position: fixed;
-    z-index: 100000;
-    left: 0;
-    top: 0;
-    color: red;
-}
 
 .flip-h {
     filter: FlipH;
@@ -160,6 +238,7 @@ textarea {
 .plate-container {
     display: flex;
     margin: auto;
+    width: -moz-fit-content;
     width: fit-content;
     align-content: center;
     margin-top: 30vmin;
@@ -180,11 +259,16 @@ textarea {
     width: calc(100% - 10vmin);
     margin: auto;
     display: block;
-    img {
+
+    svg {
         height: 40vmin;
         position: absolute;
         right: 10vmin;
         top: 0;
+    }
+
+    circle {
+        visibility: hidden;
     }
 
     p {
@@ -194,5 +278,449 @@ textarea {
         text-align: center;
         color: var(--main-color);
         font-weight: 700;
+    }
+}
+
+article {
+    position: absolute;
+    width: 100vw;
+}
+
+article.hide-article:not(.active) {
+    opacity: 0!important;
+}
+
+article.hide-article.active {
+    .plate-container {
+        :nth-of-type(1) {
+            @keyframes fork-animation-hide {
+                100% {
+                    display: none;
+                    visibility: hidden;
+                }
+                99% {
+                    transform: translateX(-30vw);
+                }
+                0% {
+                    transform: translateX(0px);
+                }
+            }
+            animation: fork-animation-hide 1s;
+            animation-fill-mode: forwards;
+        }
+
+        :nth-of-type(2) {
+            @keyframes plate-animation-hide {
+                100% {
+                    display: none;
+                    visibility: hidden;
+                }
+                99% {
+                    transform: translateY(-80vh);
+                }
+                0% {
+                    transform: translateY(0px);
+                }
+            }
+            animation: plate-animation-hide 1s;
+            animation-fill-mode: forwards;
+        }
+
+        :nth-of-type(3) {
+            @keyframes knife-animation-hide {
+                100% {
+                    display: none;
+                    visibility: hidden;
+                }
+                99% {
+                    transform: translateX(30vw);
+                }
+                0% {
+                    transform: translateX(0px);
+                }
+            }
+            animation: knife-animation-hide 1s;
+            animation-fill-mode: forwards;
+        }
+    }
+    .thinking {
+        @keyframes thinking-animation-hide {
+            100% {
+                display: none;
+                visibility: hidden;
+            }
+            99% {
+                transform: translateY(50vh);
+            }
+            0% {
+                transform: translateY(0px);
+            }
+        }
+        animation: thinking-animation-hide 1s;
+        animation-fill-mode: forwards;
+    }
+    #fish-shit {
+        @keyframes fishshit-animation-hide {
+            100% {
+                display: none;
+                visibility: hidden;
+            }
+            99% {
+                opacity: 0;
+            }
+            0% {
+                opacity: 1;
+            }
+        }
+        animation: fishshit-animation-hide 1s;
+        animation-fill-mode: forwards;
+    }
+    &#nitrosomonas > *, &#nitrospira > * {
+        opacity: 0;
+        @keyframes bacteria {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        animation:  bacteria0.5s;
+        animation-fill-mode: forwards;
+    }
+}
+    
+article:not(.hide-article).active {
+    .plate-container {
+        :nth-of-type(1) {
+            @keyframes fork-animation-show {
+                0% {
+                    transform: translateX(-30vw);
+                }
+                100% {
+                    transform: translateX(0px);
+                }
+            }
+            animation: fork-animation-show 1s;
+            animation-fill-mode: forwards;
+        }
+
+        :nth-of-type(2) {
+            @keyframes plate-animation-show {
+                0% {
+                    transform: translateY(-80vh);
+                }
+                100% {
+                    transform: translateY(0px);
+                }
+            }
+            animation: plate-animation-show 1s;
+            animation-fill-mode: forwards;
+        }
+
+        :nth-of-type(3) {
+            @keyframes knife-animation-show {
+                0% {
+                    transform: translateX(30vw);
+                }
+                100% {
+                    transform: translateX(0px);
+                }
+            }
+            animation: knife-animation-show 1s;
+            animation-fill-mode: forwards;
+        }
+    }
+    .thinking {
+        @keyframes thinking-animation-show {
+            0% {
+                transform: translateY(50vh);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        animation: thinking-animation-show 0.5s;
+        animation-fill-mode: forwards;
+
+        circle {
+            
+            @keyframes thinking-bubble-animation-show {
+                0% {
+                    transform: scale(0);
+                    visibility: visible;
+                }
+                100% {
+                    transform: scale(1);
+                    visibility: visible;
+                }
+            }
+            animation: thinking-bubble-animation-show 0.5s;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-out;
+
+            &:nth-of-type(1) {
+                animation-delay: 1.1s;
+                transform-origin: 4vmin 4vmin;
+            }
+            &:nth-of-type(2) {
+                animation-delay: 1.5s;
+                transform-origin: 8vmin 8vmin;
+            }
+            &:nth-of-type(3) {
+                animation-delay: 2s;
+                transform-origin: 20vmin 30vmin;
+            }
+        }
+    }
+    #fish-shit {
+        @keyframes fishshit-animation-show {
+            0% {
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        animation: fishshit-animation-show 10s;
+        animation-fill-mode: forwards;
+
+        path {
+                
+
+
+            stroke-dasharray: 350;
+            stroke-dashoffset: 350;
+            
+
+            &:nth-of-type(1) {
+                @keyframes shitting-animation-1 {
+                    0% {
+                        stroke-dashoffset: 350;
+                    }
+    
+                    70% {
+                        stroke-dashoffset: 0;
+                    }
+                    100% {
+                        transform: translate(6vmin, 6vmin);
+                        stroke-dashoffset: 0;
+                    }
+                }
+                animation: shitting-animation-1 5s linear forwards;
+                animation-delay: 0.5s;
+            }
+            &:nth-of-type(2) {
+                @keyframes shitting-animation-2 {
+                    0% {
+                        stroke-dashoffset: 350;
+                    }
+    
+                    70% {
+                        stroke-dashoffset: 0;
+                    }
+                    100% {
+                        transform: translate(-6vmin, 6vmin);
+                        stroke-dashoffset: 0;
+                    }
+                }
+                animation: shitting-animation-2 5s linear forwards;
+                animation-delay: 1.5s;
+            }
+            &:nth-of-type(3) {
+                @keyframes shitting-animation-3 {
+                    0% {
+                        stroke-dashoffset: 350;
+                    }
+    
+                    70% {
+                        stroke-dashoffset: 0;
+                    }
+                    100% {
+                        transform: translate(10vmin, -10vmin);
+                        stroke-dashoffset: 0;
+                    }
+                }
+                animation: shitting-animation-3 5s linear forwards;
+                animation-delay: 2.5s;
+            }
+            &:nth-of-type(4) {
+                @keyframes shitting-animation-4 {
+                    0% {
+                        stroke-dashoffset: 350;
+                    }
+    
+                    70% {
+                        stroke-dashoffset: 0;
+                    }
+                    100% {
+                        transform: translate(-10vmin, -10vmin);
+                        stroke-dashoffset: 0;
+                    }
+                }
+                animation: shitting-animation-4 5s linear forwards;
+                animation-delay: 3s;
+            }
+        }
+    }
+
+    &#nitrosomonas > *, &#nitrospira > * {
+        opacity: 0;
+        @keyframes nitrospira-animation-show {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        animation: nitrospira-animation-show 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes visible-animation {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    &#plants, &#clean-water, &#fish-tank  { 
+        animation: visible-animation  0.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1s;
+    }
+    &#toilet p {
+        animation: visible-animation  0.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 7s;
+    }
+}
+
+#clean-water, #fish-tank {
+    opacity: 0;
+}
+
+#plants {
+    opacity: 0;
+}
+
+#toilet {
+    p {
+        opacity: 0;
+    }
+}
+
+.waves {
+    
+    height: 60vh;
+    width: 100vw;
+
+
+    visibility: hidden;
+
+    div {
+        @keyframes waves-animation-motion {
+            0% {
+                background-position-x: 0vw;
+            }
+            100% {
+                background-position-x: 10000vw;
+            }
+        }
+
+        animation: waves-animation-motion 480s infinite;
+
+        height: 100%;
+        width: 100%;
+        background:rgba(0,0,0,0) url("../img/wave.svg") repeat-x;
+        background-size: auto 100%;
+    }
+
+    &.on-screen {
+        
+        @keyframes waves-animation-show {
+            0% {
+                transform: translateY(-50vh);
+                visibility: visible;
+            }
+            100% {
+                transform: translateY(0px);
+                visibility: visible;
+            }
+        }
+        animation: waves-animation-show 0.5s;
+        animation-fill-mode: forwards;
+
+
+    }
+
+    &:not(.on-screen) {
+        visibility: visible;
+        @keyframes waves-animation-hide {
+            100% {
+                visibility: hidden;
+            }
+            99% {
+                transform: translateY(-50vh);
+                visibility: visible;
+            }
+            0% {
+                transform: translateY(0px);
+                visibility: visible;
+            }
+        }
+        animation: waves-animation-hide 0.5s;
+        animation-fill-mode: forwards;
+    }
+}
+
+#device-orientation-indicator {
+    z-index: 100000;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    left: 0;
+    height: 3rem;
+    background-color: black;
+    svg {
+        height: inherit;
+        position: absolute;
+        left: 0px;
+    }
+    g {
+        > * {
+            visibility: hidden;
+        }
+
+        &[direction="stop"] :first-child {
+            visibility: visible;
+        }
+        &[direction="left"] :nth-child(2) {
+            visibility: visible;
+        }
+        &[direction="right"] :last-child {
+            visibility: visible;
+        }
+    }
+}
+
+#nitrosomonas, #nitrospira {
+    img {
+        width: 60vmin;
+        display: block;
+        margin: auto;
+    }
+    p {
+        display: block;
+        width: 60vmin;
+        margin: auto;
     }
 }

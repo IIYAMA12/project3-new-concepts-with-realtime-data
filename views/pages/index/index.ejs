@@ -12,31 +12,83 @@
     
     <main>
         <div id="main-background" class="background-transition"></div>
-        <img src="img/vis.svg" alt="vis" id="main-vis" class="on-plate">
-        <div id="crop">
-            <img src="img/crop.svg" alt="sla">
-            <img src="img/crop.svg" alt="sla">
-            <img src="img/crop.svg" alt="sla">
-        </div>
-        <article id="intro">
-            <h2>intro</h2>
-            <div class="plate-container">
-                <img src="img/fork.svg" alt="Fork">
-                <img src="img/plate.svg" alt="Plate">
-                <img src="img/knife.svg" alt="Knife">
-            </div>
 
-            <div class="thinking">
-                <img src="img/thinking.svg" alt="Thinking">
-                <p>How did I get on your plate?</p>
+        <div id="main-fish" class="on-plate rotate-with-screen on-screen">
+            <div class="rotate-container">
+                <img src="img/vis.svg" alt="vis">
             </div>
-        </article>
-        <article id="test1">
-            <h2>test1</h2>
-        </article>
-        <article id="test2">
-            <h2>test1</h2>
-        </article>
+        </div>
+        <div id="main-crop" class="on-plate rotate-with-screen on-screen">
+            <div class="rotate-container">
+                <img src="img/crop.svg" alt="sla">
+                <img src="img/crop.svg" alt="sla">
+                <img src="img/crop.svg" alt="sla">
+            </div>
+        </div>
+        <div id="article-container">
+            <article id="intro" class="active">
+                <div class="plate-container">
+                    <img src="img/fork.svg" alt="Fork">
+                    <img src="img/plate.svg" alt="Plate">
+                    <img src="img/knife.svg" alt="Knife">
+                </div>
+
+                <div class="thinking">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110.5 243.82">
+                        <title>Thinking</title>
+                        <g>
+                          <circle cx="17.86" cy="17.86" r="17.86" style="fill: #fff"/>
+                          <circle cx="53.76" cy="95.54" r="28.89" style="fill: #fff"/>
+                          <circle cx="66.07" cy="199.4" r="44.42" style="fill: #fff"/>
+                        </g>
+                    </svg>                      
+                    <p>How did I get on your plate?</p>
+                </div>
+            </article>
+            <article id="show-plate-content" class="hide-article">
+                <div id="waves" class="waves" class=""><div></div></div>
+            </article>
+            <article id="toilet" class="hide-article">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 470 303.7" id="fish-shit">
+                    <g fill="none" stroke="#af7a85" stroke-linecap="round" stroke-miterlimit="10" stroke-width="15">
+                        <path d="M262.5 7.5s1.5 78-76.5 132S19.5 159 7.5 178.5"/>
+                        <path d="M260.6 8.8s-88.7 80.2-111 157"/>
+                        <path d="M262.5 7.5s-150.1 45.7-164 145.6"/>
+                        <path d="M262.5 7.5S255.7 109.3 150 123 25 184.7 32 196.2"/>
+                    </g>
+                </svg>
+                <p>Ammonia</p>
+                
+            </article>
+            <article id="nitrosomonas" class="hide-article">
+                <img src="img/nitrosomonas.svg" alt="nitrosomonas">
+                <p>Nitrosomonas sp. converts Ammonia to Nitrite</p>
+            </article>
+            <article id="nitrospira" class="hide-article">
+                <img src="img/nitrospira.svg" alt="nitrospira">
+                <p>Nitrospira sp. converts Nitrite to Nitrate. Which can be used in the nutriets for the plants.</p>
+            </article>
+            <article id="plants" class="hide-article">
+                <img src="img/crop-in-production.svg" alt="nitrospira">
+                <p>Nutriets are taken up by the plants.</p>
+
+            </article>
+            <article id="clean-water" class="hide-article">
+                <p>Once the plants have taken the nutriets, the water is cleaned and can be re-used for the fish.</p>
+            </article>
+            <article id="fish-tank" class="hide-article">
+                <p>Yeah clean water!</p>
+            </article>
+        </div>
+        <footer id="device-orientation-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                <g fill="#fff" >
+                    <circle cx="25" cy="25" r="15" />
+                    <path d="M33,11.26l-19.08,11a3.14,3.14,0,0,0,0,5.44L33,38.74A3.14,3.14,0,0,0,37.68,36V14A3.14,3.14,0,0,0,33,11.26Z" />
+                    <path d="M17,38.74l19.08-11a3.14,3.14,0,0,0,0-5.44L17,11.26A3.14,3.14,0,0,0,12.32,14V36A3.14,3.14,0,0,0,17,38.74Z"/>
+                </g>
+            </svg>
+        </footer>
     </main>
     <textarea id="" cols="30" rows="10"></textarea>
     <script src="js/camera-control-debug.js"></script>
