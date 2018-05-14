@@ -31,20 +31,6 @@ let zeroState = true;
 
         for (let index = 0; index < rotateWithScreenElements.length; index++) {
             const element = rotateWithScreenElements[index];
-            // let transfromString = element.style.transform;
-            
-            // const transformStringParts = transfromString.split(" ");
-            // transfromString = "";
-
-            // for (let i = 0; i < transformStringParts.length; i++) {
-            //     const string = transformStringParts[i];
-            //     console.log("??", string)
-            //     if ((string[0] != "r" && string[1] != "o") && (string[0] != "s" && string[1] != "c")) {
-            //         transfromString += string;
-                    
-            //     }   
-            // }
-            
 
             if (gamma > 0) {
                 element.style.transform =  "rotate(" + -gamma + "deg)";
