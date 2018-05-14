@@ -9,23 +9,19 @@ const
     googleSpreadsheet = require("./google-spreadsheet")
 ;
 
+
+
+
 googleSpreadsheet.callBack = function (item) {
-    
     const rows = item.rows;
     const name = item.name;
-    if (rows.length) {
-        const lastRow = rows[rows.length - 1];
-        console.log("lastRow", lastRow, "of", name);
-        io.sockets.emit("data-stream", name, lastRow);
-        // Print columns A and E, which correspond to indices 0 and 4.
-        // rows.map((row) => {
-        //     // console.log(`${row[0]}, ${row[1]}, ${row[2]}, ${row[3]}, ${row[4]}`);
-        // });
-    } else {
-        console.log("No data found.");
-    }
-    
-    
+    const lastRow = rows[rows.length - 1];
+    console.log("lastRow", lastRow, "of", name);
+    io.sockets.emit("data-stream_s", name, lastRow);
+    // Print columns A and E, which correspond to indices 0 and 4.
+    // rows.map((row) => {
+    //     // console.log(`${row[0]}, ${row[1]}, ${row[2]}, ${row[3]}, ${row[4]}`);
+    // });
 };
 
 
@@ -36,7 +32,10 @@ const io = require("socket.io")(server);
 server.listen(3243);
 
 io.on("connection", function (socket) {
-
+    const object = googleSpreadsheet.data;
+    for (const name in object) {
+        socket.emit("data-stream_s", name, object[name], "connected");
+    }
 });
 
 var sess = {

@@ -83,9 +83,69 @@ function getNewToken(oAuth2Client, callback) {
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
 
-googleSpreadsheet.data = []; 
+googleSpreadsheet.data = {}; 
+
+
+// "Waterflow", "Aquaponics Datastream", "Production Aquaponics System"
 
 const spreadsheetTabNames = ["Waterflow", "Aquaponics Datastream", "Production Aquaponics System"]; // , "Hydroponics Datastream (02/20/17 - 03/27/17)""
+const spreadsheetRowValidator = {
+    ["Waterflow"] : function (row) {
+        
+        row[4] = parseFloat(row[4]);
+
+        if (row[3] != "" && row[3] != undefined && row[4] != "" && row[4] != undefined && isNumeric(row[4])) { // 
+            return true;
+        }
+        return false;
+    },
+    ["Aquaponics Datastream"] : function (row) {
+        row[2] = parseFloat(row[2]);
+        row[4] = parseFloat(row[4]);
+        row[6] = parseFloat(row[6]);
+        row[7] = parseFloat(row[7]);
+        row[8] = parseFloat(row[8]);
+        row[10] = parseFloat(row[10]);
+        if (row[0] != "" && isNumeric(row[2]) && row[3] != "" && row[3] != undefined && isNumeric(row[4]) && isNumeric(row[6])&& isNumeric(row[7])&& isNumeric(row[8])&& isNumeric(row[10])) {
+            return true;
+        }
+        return false;
+    },
+    ["Production Aquaponics System"] : function (row) {
+        row[3] = parseFloat(row[3]);
+        row[4] = parseFloat(row[4]);
+        row[5] = parseFloat(row[5]);
+        if (row[0] != "" && row[0] != undefined && row[1] != "" && row[1] != undefined && isNumeric(row[3]) && isNumeric(row[4]) && isNumeric(row[5])) {
+            return true;
+        }
+        return false;
+    }
+}
+
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+// https://gist.github.com/pinalbhatt/9672790
+
+
+
+function clearToLastValidRow (spreadsheetTabName, rows) {
+    if (spreadsheetRowValidator[spreadsheetTabName] != undefined) {
+        for (let index = rows.length - 1; index > -1; index--) {
+            const row = rows[index]
+            // console.log("index", index);
+            
+            if (!spreadsheetRowValidator[spreadsheetTabName](row)) {
+                console.log("splice", index, row);
+                rows.splice(index, 1);
+            } else {
+                return rows;
+            }
+        }
+    }
+}
+
+
 function listMajors(auth) {
     const refreshData = function () {
         googleSpreadsheet.data = [];
@@ -102,11 +162,14 @@ function listMajors(auth) {
                 data
             }) => {
                 if (err) return console.log("The API returned an error: " + err);
-                const rows = data.values;
-
-                const newObject = {name: spreadsheetName, rows: rows};
-                googleSpreadsheet.data[googleSpreadsheet.data.length] = newObject
-                googleSpreadsheet.callBack(newObject);
+                if (data.values.length) {
+                    const rows = clearToLastValidRow(spreadsheetName, data.values);
+                    if (rows != undefined) {
+                        const newObject = {name: spreadsheetName, rows: rows};
+                        googleSpreadsheet.data[spreadsheetName] = newObject
+                        googleSpreadsheet.callBack(newObject);
+                    }
+                }
             });
         }
     }

@@ -125,7 +125,7 @@ const slideControl = (function () {
             for (let i = 0; i < slides.length; i++) {
                 const slide = slides[i];
                 if (this.slidePosition <= slideOffset + slide.length) {
-                    console.log("slide index", i, this.slidePosition);
+                    // console.log("slide index", i, this.slidePosition);
                     slideControl.show(i);
                     break;
                 } else {

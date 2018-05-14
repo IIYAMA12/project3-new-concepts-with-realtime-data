@@ -1,1 +1,1 @@
-let socket;window.addEventListener("load",function(){const o=window.location;o.protocol,o.host.split(":")[0];socket=io.connect("localhost:3243")});
+let socket;const socketStreamData={};window.addEventListener("load",function(){const t=window.location,o=t.protocol+"//"+t.host.split(":")[0];(socket=io.connect(o+":3243")).on("data-stream_s",function(t,o){socketStreamData[t]=o})});
