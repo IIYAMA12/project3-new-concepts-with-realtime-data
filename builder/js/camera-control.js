@@ -53,7 +53,7 @@ const slideControl = (function () {
             elementId: "show-plate-content",
         },
         {
-            length: 2,
+            length: 3,
             elementId: "",
         },
         {
@@ -93,10 +93,6 @@ const slideControl = (function () {
         {
             length: 4,
             elementId: "plants",
-        },
-        {
-            length: 4,
-            elementId: "clean-water",
         },
         {
             length: 4,
@@ -248,6 +244,5 @@ const slideControl = (function () {
         });
     });    
 })();
-
 
 

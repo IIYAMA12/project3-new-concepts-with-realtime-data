@@ -58,6 +58,35 @@ body {
 
 p {
     margin: 0.5rem 1rem;
+    line-height: 1.4em;
+}
+
+#open-zero-state {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+#zero-state {
+    &:not(.active) {
+        display: none;
+        visibility: hidden;
+    }
+    position: fixed;
+    z-index: 1000000;
+    background-color: black;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    button {
+        border: none;
+        background-color: white;
+        color: black;
+        margin-top: 2rem;
+        border-radius: 3rem;
+        padding: 1rem;
+    }
 }
 
 
@@ -240,6 +269,16 @@ textarea {
     }
 }
 
+
+#fish-tank {
+    #fish-container div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+}
 
 
 .flip-h {
@@ -716,7 +755,7 @@ article:not(.hide-article).active {
             }
         }
 
-        animation: waves-animation-motion 480s infinite;
+        animation: waves-animation-motion 580s infinite;
 
         height: 100%;
         width: 100%;

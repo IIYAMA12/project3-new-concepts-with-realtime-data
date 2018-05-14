@@ -1,9 +1,13 @@
 // let mainRotation = 0;
 
+let zeroState = true;
 (function () {
     // document.getElementsByTagName("textarea")[0].value = "start";
     
     const handleOrientation = function (event) {
+        if (zeroState) {
+            return false;
+        }
         const absolute = event.absolute;
         const alpha    = Math.floor(event.alpha + 0.5);
         let beta     = Math.floor(event.beta + 0.5);
@@ -94,3 +98,16 @@
     window.addEventListener("deviceorientation", handleOrientation, true);
 })();
 
+(function() {
+    document.getElementById("open-zero-state").addEventListener("click", function () {
+        zeroState = true;
+        document.getElementById("zero-state").classList.add("active");
+    });
+    const closeZeroStateElement = document.getElementById("close-zero-state");
+    if (closeZeroStateElement != undefined) {
+        closeZeroStateElement.addEventListener("click", function () {
+            zeroState = false;
+            document.getElementById("zero-state").classList.remove("active");
+        });
+    }
+})();
