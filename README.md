@@ -1,5 +1,6 @@
 # project3: How did I get on your plate?
 
+![Cover](readme-content/cover.svg)
 
 ## Concept 
 Let the user go through the water-cycle/life-cycle of their food, 
