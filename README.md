@@ -13,7 +13,7 @@ by using the orientation of a mobile device.
 
 ### Zero-state
 
-`In order to navigate, you have to tilt the appliance a small amount to the left or right. Max 45&deg; to the left or right.`
+`In order to navigate, you have to tilt the device a small amount to the left or right. Max 45; to the left or right.`
 
 `Keep it in the same position until the page has been changed. Return the device orientation back to it's original state to stop the page from changing.`
 
