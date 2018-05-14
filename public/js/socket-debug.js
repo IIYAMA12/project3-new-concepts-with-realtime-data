@@ -10,7 +10,25 @@ window.addEventListener("load", function () {
 
     socket.on("data-stream_s", function (name, data) {
         socketStreamData[name] = data;
+        updateOnDataChange(name, data);
     });
 });
 
+const updateOnDataChange = (function () {
+    const updateFunctions = {
+        ["Production Aquaponics System"] : function (data) {
+            if (data[1] != undefined && data[1] != "") {
+                const yieldStatus = data[1].toLowerCase();
+                document.getElementById("crop-yield").setAttribute("yield", yieldStatus);
+            }
+        }
+    }
+    const updateOnDataChange = function  (name, data) {
+        const updateFunction = updateFunctions[name];
+        if (updateFunction != undefined) {
+            updateFunction(data);
+        }
+    }
+    return updateOnDataChange;
+})();
 

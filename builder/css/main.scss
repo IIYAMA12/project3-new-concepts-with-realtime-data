@@ -610,6 +610,40 @@ article:not(.hide-article).active {
 
 #plants {
     opacity: 0;
+    .crop-in-production {
+        width: 80%;
+        margin: auto;
+        display: block;
+        img {
+            &:first-child {
+                width: inherit;
+            }
+            &:nth-of-type(2) {
+                transition: width 2s, left 2s, top 2s;
+
+                &[yield="low"] {
+                    width: 25vmin;
+                    position: absolute;
+                    left: calc(50% - 12.5vmin);
+                    top: 36vmin;
+                }
+
+                &[yield="medium"] {
+                    width: 50vmin;
+                    position: absolute;
+                    left: calc(50% - 25vmin);
+                    top: 23vmin;
+                }
+
+                &[yield="high"]  {
+                    width: 65vmin;
+                    position: absolute;
+                    left: calc(50% - 32.5vmin);
+                    top: 13vmin;
+                }
+            }
+        }
+    }
 }
 
 #toilet {

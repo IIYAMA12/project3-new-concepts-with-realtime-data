@@ -34,7 +34,14 @@ server.listen(3243);
 io.on("connection", function (socket) {
     const object = googleSpreadsheet.data;
     for (const name in object) {
-        socket.emit("data-stream_s", name, object[name], "connected");
+        console.log(name, object);
+        const lastRow = object[name].rows[object[name].rows.length - 1];
+        if (lastRow != undefined) {
+            socket.emit("data-stream_s", name, lastRow);
+        } else {
+            console.log("no last row");
+        }
+
     }
 });
 
