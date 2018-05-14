@@ -1,0 +1,1 @@
+let socket;window.addEventListener("load",function(){const o=window.location;o.protocol,o.host.split(":")[0];socket=io.connect("localhost:3243")});

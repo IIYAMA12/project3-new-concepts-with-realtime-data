@@ -4,10 +4,40 @@ const
     express = require("express"),
     bodyParser = require("body-parser"),
     session = require("express-session"),
-    minifyHTML = require('express-minify-html'),
-    ejs = require('ejs')
+    minifyHTML = require("express-minify-html"),
+    ejs = require("ejs"),
+    googleSpreadsheet = require("./google-spreadsheet")
 ;
 
+googleSpreadsheet.callBack = function (item) {
+    
+    const rows = item.rows;
+    const name = item.name;
+    if (rows.length) {
+        const lastRow = rows[rows.length - 1];
+        console.log("lastRow", lastRow, "of", name);
+        io.sockets.emit("data-stream", name, lastRow);
+        // Print columns A and E, which correspond to indices 0 and 4.
+        // rows.map((row) => {
+        //     // console.log(`${row[0]}, ${row[1]}, ${row[2]}, ${row[3]}, ${row[4]}`);
+        // });
+    } else {
+        console.log("No data found.");
+    }
+    
+    
+};
+
+
+const socketApp = require("express")();
+const server = require("http").Server(socketApp);
+const io = require("socket.io")(server);
+
+server.listen(3243);
+
+io.on("connection", function (socket) {
+
+});
 
 var sess = {
     secret: "gfjisdhu5yvdist4fvhsdyutg47sydiywe45iadhwo8",
