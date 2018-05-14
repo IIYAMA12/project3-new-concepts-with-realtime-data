@@ -16,12 +16,7 @@ googleSpreadsheet.callBack = function (item) {
     const rows = item.rows;
     const name = item.name;
     const lastRow = rows[rows.length - 1];
-    console.log("lastRow", lastRow, "of", name);
     io.sockets.emit("data-stream_s", name, lastRow);
-    // Print columns A and E, which correspond to indices 0 and 4.
-    // rows.map((row) => {
-    //     // console.log(`${row[0]}, ${row[1]}, ${row[2]}, ${row[3]}, ${row[4]}`);
-    // });
 };
 
 
@@ -34,14 +29,10 @@ server.listen(3243);
 io.on("connection", function (socket) {
     const object = googleSpreadsheet.data;
     for (const name in object) {
-        console.log(name, object);
         const lastRow = object[name].rows[object[name].rows.length - 1];
         if (lastRow != undefined) {
             socket.emit("data-stream_s", name, lastRow);
-        } else {
-            console.log("no last row");
         }
-
     }
 });
 

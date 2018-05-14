@@ -6,7 +6,6 @@ window.addEventListener("load", function () {
     const getUrl = window.location;
     const baseUrl = getUrl.protocol + "//" + getUrl.host.split(":")[0];
     socket = io.connect(baseUrl + ":3243");
-    // socket = io.connect("localhost:3243");
 
     socket.on("data-stream_s", function (name, data) {
         socketStreamData[name] = data;
@@ -24,10 +23,8 @@ const updateOnDataChange = (function () {
 
             const plantsContainerElement = document.getElementById("plants");
             if (plantsContainerElement != undefined) {
-                console.log("update1")
                 const table = plantsContainerElement.getElementsByTagName("table")[0];
                 if (table != undefined) {
-                    console.log("update2")
                     const dataElements = table.getElementsByTagName("td");
                     dataElements[0].textContent = data[3] + "x plants"; 
                     dataElements[1].textContent = data[4] + "x plants";

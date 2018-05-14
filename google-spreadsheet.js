@@ -139,10 +139,7 @@ function clearToLastValidRow (spreadsheetTabName, rows) {
     if (spreadsheetRowValidator[spreadsheetTabName] != undefined) {
         for (let index = rows.length - 1; index > -1; index--) {
             const row = rows[index]
-            // console.log("index", index);
-            
             if (!spreadsheetRowValidator[spreadsheetTabName](row)) {
-                console.log("splice", index, row);
                 rows.splice(index, 1);
             } else {
                 return rows;
