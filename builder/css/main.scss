@@ -56,6 +56,10 @@ body {
     --main-color: #2EACFF;
 }
 
+p {
+    margin: 0.5rem 1rem;
+}
+
 
 
 
@@ -66,6 +70,14 @@ body {
     height: 100vh;
     width: 100vw;
     text-align: center;
+}
+
+
+h3 {
+    margin-top: 1.5rem;
+    font-size: 2.5em;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
 }
 
 #main-background {
@@ -288,6 +300,10 @@ article {
 
 article.hide-article:not(.active) {
     opacity: 0!important;
+}
+
+article.hide-article {
+    pointer-events: none;
 }
 
 article.hide-article.active {
@@ -610,6 +626,36 @@ article:not(.hide-article).active {
 
 #plants {
     opacity: 0;
+
+    table {
+        width: fit-content;
+        display: block;
+        text-align: center;
+        margin: auto;
+        padding: 5vmin;
+    }
+
+    th {
+        font-weight: 800;
+        display: block;
+    }
+
+    td {
+        display: block;
+    }
+
+    tr {
+        margin-bottom: 0.5rem;
+        display: block;
+        &:nth-child(2n+2) {
+            margin-bottom: 1.2rem; 
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
     .crop-in-production {
         width: 80%;
         margin: auto;
@@ -750,11 +796,11 @@ article:not(.hide-article).active {
     img {
         width: 60vmin;
         display: block;
-        margin: auto;
+        margin: 20vh auto 0 auto;
     }
     p {
         display: block;
         width: 60vmin;
-        margin: auto;
+        margin: 1rem auto;
     }
 }

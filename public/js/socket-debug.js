@@ -21,6 +21,19 @@ const updateOnDataChange = (function () {
                 const yieldStatus = data[1].toLowerCase();
                 document.getElementById("crop-yield").setAttribute("yield", yieldStatus);
             }
+
+            const plantsContainerElement = document.getElementById("plants");
+            if (plantsContainerElement != undefined) {
+                console.log("update1")
+                const table = plantsContainerElement.getElementsByTagName("table")[0];
+                if (table != undefined) {
+                    console.log("update2")
+                    const dataElements = table.getElementsByTagName("td");
+                    dataElements[0].textContent = data[3] + "x plants"; 
+                    dataElements[1].textContent = data[4] + "x plants";
+                    dataElements[2].textContent = data[5] + "x plants";
+                }
+            }
         }
     }
     const updateOnDataChange = function  (name, data) {
