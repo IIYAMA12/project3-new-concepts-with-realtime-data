@@ -3,8 +3,10 @@ This experimental application is created to inspire the De Ceuvel company on how
 
 
 ## Table of contents
-
-
+- [Concept of navigating](concept-of-navigating)
+- [Realtime data](realtime-data)
+- [Experiment with animation types](experiment-with-animation-types)
+- [Todo](todo)
 
 ![Cover](readme-content/cover.svg)
 
@@ -288,4 +290,4 @@ Used for applying the device orientation to the html components.
 - [ ] Build for landscape orientation as well.
 - [ ] Support tablets.
 - [ ] Improve progressive enhancement.
-- [ ] Update code events for the future.
+- [ ] Update client code events for future proof.
